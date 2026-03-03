@@ -38,6 +38,10 @@ const HabitCard = ({ habit }) => {
           <StreakBadge streak={habit.current_streak || 0} />
         </div>
 
+        <p className="text-sm text-gray-600 dark:text-gray-100 mt-2">
+          {habit.difficulty}
+        </p>
+
         <button
           onClick={handleLog}
           className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700"
