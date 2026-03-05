@@ -3,13 +3,23 @@ import StreakBadge from "./StreakBadge";
 import { Pencil, Trash } from "lucide-react";
 import { useState } from "react";
 import UpdateHabitModal from "./UpdateHabitModal";
+import { completeHabitAPI } from "../../services/habitService";
 
-const HabitCard = ({ habit }) => {
+const HabitCard = ({ habit, refreshHabits }) => {
   const { logHabit, deleteHabit } = useHabits();
   const [open, setOpen] = useState(false);
 
   const handleLog = async () => {
     await logHabit(habit.id);
+  };
+
+  const handleComplete = async () => {
+    try {
+      await completeHabitAPI(habit.id);
+      refreshHabits(); // reload habits
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -43,10 +53,10 @@ const HabitCard = ({ habit }) => {
         </p>
 
         <button
-          onClick={handleLog}
+          onClick={handleComplete}
           className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700"
         >
-          Mark Complete
+          Mark as Completed
         </button>
       </div>
 

@@ -24,3 +24,8 @@ export const updateHabitAPI = async (id, updatedHabit) => {
   const { data } = await API.put(`/habits/${id}`, updatedHabit);
   return data;
 };
+
+export const completeHabitAPI = async (id) => {
+  const { data } = await API.post(`/habits/${id}/complete`);
+  return data;
+};

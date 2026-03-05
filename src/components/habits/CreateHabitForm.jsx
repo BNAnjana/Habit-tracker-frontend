@@ -58,6 +58,7 @@ const CreateHabitForm = () => {
           setForm({ ...form, difficulty: e.target.value })
         }
       >
+        <option value="">Select Difficulty</option>
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
