@@ -8,6 +8,7 @@ import { completeHabitAPI } from "../../services/habitService";
 const HabitCard = ({ habit, refreshHabits }) => {
   const { logHabit, deleteHabit } = useHabits();
   const [open, setOpen] = useState(false);
+  const [completed, setCompleted] = useState(false);
 
   const handleLog = async () => {
     await logHabit(habit.id);
@@ -16,6 +17,7 @@ const HabitCard = ({ habit, refreshHabits }) => {
   const handleComplete = async () => {
     try {
       await completeHabitAPI(habit.id);
+      setCompleted(true);   // UI update
       refreshHabits(); // reload habits
     } catch (error) {
       console.error(error);
@@ -52,12 +54,19 @@ const HabitCard = ({ habit, refreshHabits }) => {
           {habit.difficulty}
         </p>
 
-        <button
-          onClick={handleComplete}
-          className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700"
-        >
-          Mark as Completed
-        </button>
+        {completed ? (
+          <div className="mt-4 text-center text-green-600 font-semibold">
+            Completed ✅
+          </div>
+        ) : (
+          <button
+            onClick={handleComplete}
+            className="mt-4 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700"
+          >
+            Mark as Completed
+          </button>
+        )}
+        
       </div>
 
       {open && (
