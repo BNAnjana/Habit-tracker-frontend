@@ -1,5 +1,4 @@
 import { useHabits } from "../../context/HabitContext";
-import StreakBadge from "./StreakBadge";
 import { Pencil, Trash } from "lucide-react";
 import { useState } from "react";
 import UpdateHabitModal from "./UpdateHabitModal";
@@ -45,10 +44,6 @@ const HabitCard = ({ habit, refreshHabits }) => {
         <p className="text-sm text-gray-600 dark:text-gray-100 mt-2">
           {habit.description}
         </p>
-
-        <div className="mt-4">
-          <StreakBadge streak={habit.current_streak || 0} />
-        </div>
 
         <p className="text-sm text-gray-600 dark:text-gray-100 mt-2">
           {habit.difficulty}
